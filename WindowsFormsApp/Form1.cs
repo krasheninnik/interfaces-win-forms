@@ -65,15 +65,15 @@ namespace WindowsFormsAppDataGrid
             chart1.DataSource = Charts[selectedChart].data;
         }
 
-        public void setDrawModeForSeriesInChart(int i, string mode)
+        public void setDrawModeForSeriesInChart(string seriesName, string mode)
         {
             switch (mode)
             {
                 case "as lines":
-                    chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    chart1.Series[seriesName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                     break;
                 case "as spline":
-                    chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+                    chart1.Series[seriesName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
                     break;
                 default:
                     MessageBox.Show("Please select draw mode");
@@ -85,24 +85,12 @@ namespace WindowsFormsAppDataGrid
         {
             if (chart1 == null) return;
 
-            //// get draw mode:
-            //string mode = this.comboBox2.GetItemText(this.comboBox2.SelectedItem);
-            //switch (mode)
-            //{
-            //    case "as lines":
-            //        chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            //        break;
-            //    case "as spline":
-            //        chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            //        break;
-            //    default:
-            //        MessageBox.Show("Please select draw mode");
-            //        break;
-            //}
-
             // cleanup before we start 
             chart1.ChartAreas.Clear();
             chart1.Series.Clear();
+
+            // get draw mode:
+            string mode = this.comboBox2.GetItemText(this.comboBox2.SelectedItem);
 
 
             chart1.ChartAreas.Add("area1");
@@ -110,7 +98,7 @@ namespace WindowsFormsAppDataGrid
             {
                 chart1.Series.Add($"series{i}");
                 chart1.Series[$"series{i}"].ChartArea = "area1";
-                chart1.Series[$"series{i}"].ChartType = SeriesChartType.Spline;
+                setDrawModeForSeriesInChart($"series{i}", mode); 
                 chart1.Series[$"series{i}"].Color = Charts[i].color;
                 chart1.Series[$"series{i}"].Legend = "Expenses";
                 chart1.Series[$"series{i}"].LegendText = Charts[i].fileName;
@@ -284,7 +272,13 @@ namespace WindowsFormsAppDataGrid
                 case 1: color = Color.Navy; break;
                 case 2: color = Color.Blue; break;
                 case 3: color = Color.Orange; break;
-                default: color = Color.Blue; break;
+                case 4: color = Color.Olive; break;
+                case 5: color = Color.Moccasin; break;
+                case 6: color = Color.Violet; break;
+                case 7: color = Color.Lime; break;
+                case 8: color = Color.Yellow; break;
+                case 9: color = Color.SandyBrown; break;
+                default: color = Color.DarkGray; break;
             }
             return color;
         }
