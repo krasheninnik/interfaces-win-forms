@@ -206,18 +206,30 @@ namespace WindowsFormsAppDataGrid
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
 
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            try
             {
-                if ((myStream = saveFileDialog1.OpenFile()) != null)
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    using (StreamWriter writer = new StreamWriter(myStream))
+                    if ((myStream = saveFileDialog1.OpenFile()) != null)
                     {
-                        // there mehod to extract data from table. oops
-                        var data = "Hello from program, how are you?";
-                        writer.Write(data);
+                        using (StreamWriter writer = new StreamWriter(myStream))
+                        {
+                            // there mehod to extract data from table. oops
+                            var points = Charts[selectedChart].data.List;
+
+                            for (int j = 0; j < points.Count; j++)
+                            {
+                                var p = (Data)points[j];
+                                writer.Write($"{p.X} {p.Y}\n");
+                            }
+                        }
+                        myStream.Close();
                     }
-                    myStream.Close();
                 }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"File haven't been saved. Exception caught: {exception.Message}");
             }
         }
 
