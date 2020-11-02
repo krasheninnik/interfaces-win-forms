@@ -11,12 +11,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms.VisualStyles;
 
 namespace WindowsFormsAppDataGrid
 {
     public partial class Form1 : Form
     {
+
+
         public int selectedChart = -1;
         public List<Chart> Charts { get; set; }
         public BindingSource Data { get; set; }
@@ -33,6 +36,11 @@ namespace WindowsFormsAppDataGrid
             comboBox2.SelectedItem = "as lines";
             Charts.Add(chart);
             selectedChart = 0;
+
+            chart1.Legends.Add(new Legend("Expenses"));
+            chart1.Legends[0].TableStyle = LegendTableStyle.Auto;
+            chart1.Legends[0].Alignment = System.Drawing.StringAlignment.Center;
+
             dataGridView1.DataSource = Charts[selectedChart].data;
             dataGridView2.DataSource = GetFileNames();
         }
@@ -57,28 +65,71 @@ namespace WindowsFormsAppDataGrid
             chart1.DataSource = Charts[selectedChart].data;
         }
 
-        private void drawСhart()
+        public void setDrawModeForSeriesInChart(int i, string mode)
         {
-            if (chart1 == null) return;
-
-            chart1.DataSource = null;
-
-            // get draw mode:
-            string mode = this.comboBox2.GetItemText(this.comboBox2.SelectedItem);
             switch (mode)
             {
                 case "as lines":
-                    chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                     break;
                 case "as spline":
-                    chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+                    chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
                     break;
                 default:
                     MessageBox.Show("Please select draw mode");
                     break;
             }
+        }
 
-            if (selectedChart != -1) chart1.DataSource = Charts[selectedChart].data;
+        private void drawСhart()
+        {
+            if (chart1 == null) return;
+
+            //// get draw mode:
+            //string mode = this.comboBox2.GetItemText(this.comboBox2.SelectedItem);
+            //switch (mode)
+            //{
+            //    case "as lines":
+            //        chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            //        break;
+            //    case "as spline":
+            //        chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            //        break;
+            //    default:
+            //        MessageBox.Show("Please select draw mode");
+            //        break;
+            //}
+
+            // cleanup before we start 
+            chart1.ChartAreas.Clear();
+            chart1.Series.Clear();
+
+
+            chart1.ChartAreas.Add("area1");
+            for (int i = 0; i < Charts.Count; i++)
+            {
+                chart1.Series.Add($"series{i}");
+                chart1.Series[$"series{i}"].ChartArea = "area1";
+                chart1.Series[$"series{i}"].ChartType = SeriesChartType.Spline;
+                chart1.Series[$"series{i}"].Color = Charts[i].color;
+                chart1.Series[$"series{i}"].Legend = "Expenses";
+                chart1.Series[$"series{i}"].LegendText = Charts[i].fileName;
+
+                var xx = new List<double>();
+                var yy = new List<double>();
+
+                var points = Charts[i].data.List;
+
+                for (int j = 0; j < points.Count; j++)
+                {
+                    var p = (Data)points[j];
+                    xx.Add(p.X);
+                    yy.Add(p.Y);
+                }
+                
+                // add x and y to chart:
+                chart1.Series[$"series{i}"].Points.DataBindXY(xx, yy);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -199,6 +250,11 @@ namespace WindowsFormsAppDataGrid
                 selectedChart = dataGridView2.SelectedRows[0].Index;
                 dataGridView1.DataSource = Charts[selectedChart].data;
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
     public class Data
