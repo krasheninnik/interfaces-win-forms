@@ -52,16 +52,16 @@ namespace WindowsFormsAppDataGrid
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(325, 57);
+            this.dataGridView1.Location = new System.Drawing.Point(612, 57);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(240, 323);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(486, 213);
+            this.addButton.Location = new System.Drawing.Point(773, 395);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 1;
@@ -76,7 +76,7 @@ namespace WindowsFormsAppDataGrid
             legend1.Enabled = false;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(12, 27);
+            this.chart1.Location = new System.Drawing.Point(12, 57);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
@@ -84,13 +84,13 @@ namespace WindowsFormsAppDataGrid
             series1.XValueMember = "X";
             series1.YValueMembers = "Y";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(300, 300);
+            this.chart1.Size = new System.Drawing.Size(579, 447);
             this.chart1.TabIndex = 2;
             this.chart1.Text = "chart1";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(325, 242);
+            this.button3.Location = new System.Drawing.Point(612, 424);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(115, 23);
             this.button3.TabIndex = 5;
@@ -104,7 +104,7 @@ namespace WindowsFormsAppDataGrid
             this.comboBox2.Items.AddRange(new object[] {
             "as spline",
             "as lines"});
-            this.comboBox2.Location = new System.Drawing.Point(446, 242);
+            this.comboBox2.Location = new System.Drawing.Point(733, 424);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(115, 21);
             this.comboBox2.TabIndex = 7;
@@ -117,7 +117,7 @@ namespace WindowsFormsAppDataGrid
             this.failToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(716, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1056, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -147,9 +147,9 @@ namespace WindowsFormsAppDataGrid
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(571, 57);
+            this.dataGridView2.Location = new System.Drawing.Point(883, 57);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(130, 150);
+            this.dataGridView2.Size = new System.Drawing.Size(130, 233);
             this.dataGridView2.TabIndex = 9;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -157,7 +157,7 @@ namespace WindowsFormsAppDataGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(716, 471);
+            this.ClientSize = new System.Drawing.Size(1056, 554);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.button3);
