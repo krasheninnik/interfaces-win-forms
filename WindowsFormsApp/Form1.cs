@@ -143,6 +143,13 @@ namespace WindowsFormsAppDataGrid
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if(Charts.Count == 10)
+            {
+                MessageBox.Show("Sorry, you can't add more files");
+                return;
+            }
+
+
             var fileContent = string.Empty;
             var filePath = string.Empty;
 

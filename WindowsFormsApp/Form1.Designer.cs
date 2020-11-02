@@ -117,7 +117,7 @@ namespace WindowsFormsAppDataGrid
             this.failToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1056, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1048, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -157,7 +157,7 @@ namespace WindowsFormsAppDataGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1056, 554);
+            this.ClientSize = new System.Drawing.Size(1048, 579);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.button3);
